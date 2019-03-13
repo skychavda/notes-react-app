@@ -1,0 +1,12 @@
+.hide-side-bar{
+  max-width: 0%!important;
+}
+
+.show-side-bar{
+  // max-width: 100%;
+  // border: 1px solid black;
+  background: #000;
+  color: #fff;
+  min-height: 100%;
+  transition: all 2s ease;
+}
