@@ -4,9 +4,14 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^4.0.0-alpha.1",
+    "classnames": "^2.2.6",
+    "lodash.isequal": "^4.5.0",
     "prop-types": "^15.7.2",
+    "query-string": "^6.4.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -14,8 +19,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "eslint src --ext .jsx --ext .js",
+    "lint-fix": "eslint --fix src --ext .jsx --ext .js",
     "watch:sass": "npm run build:sass && npm run build:sass -- -w",
-    "build:sass": "node-sass -r --output-style compressed src/stylesheets/main.scss -o src/stylesheets/"
+    "build:sass": "node-sass -r --output-style compressed src/stylesheets/main.scss -o src/stylesheets/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,6 +34,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "node-sass": "^4.11.0"
   }
 }

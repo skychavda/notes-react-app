@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
 import PropTypes from 'prop-types';
-import { Grid, Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles'
-import LeftSideBar from '../src/components/left-side-bar/leftSideBar';
+import { withStyles } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import DisplayNote from './components/left-side-bar/displayNote';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
 });
 
@@ -16,39 +16,31 @@ class App extends Component {
     super(props);
     this.state = {
       isSideBarOpen: false,
-    }
+    };
     this.handleSideBarReaction = this.handleSideBarReaction.bind(this);
   }
 
   handleSideBarReaction() {
+    const { isSideBarOpen } = this.state;
     this.setState({
-      isSideBarOpen: !this.state.isSideBarOpen,
-    })
+      isSideBarOpen: !isSideBarOpen,
+    });
   }
 
   render() {
     const { classes } = this.props;
-    const { isSideBarOpen } = this.state;
-    console.log('Line ---- 32', isSideBarOpen);
-    console.log('Line ---- 22', classes);
     return (
       <div className={classes.root}>
-        <Button onClick={this.handleSideBarReaction} variant="text" color="primary">Menu</Button>
-        <Grid container>
-          <Grid item xs={3} className={isSideBarOpen === true ? "show-side-bar" : "hide-side-bar"}>
-            <LeftSideBar />
-          </Grid>
-          <Grid item xs={9}>
-            <LeftSideBar />
-          </Grid>
-        </Grid>
+        <Router>
+          <Route path="/" component={DisplayNote} />
+        </Router>
       </div>
     );
   }
 }
 
 App.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
+  classes: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+};
 
 export default withStyles(styles)(App);
