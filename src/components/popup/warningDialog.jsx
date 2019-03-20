@@ -31,7 +31,11 @@ class WarningDialog extends React.Component {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Caution 🚫</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {'Caution'}
+          {' '}
+          <span role="img" aria-label="caution">🚫</span>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {'No note found with provided id'}

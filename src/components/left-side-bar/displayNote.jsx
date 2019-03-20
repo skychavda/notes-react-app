@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { PropTypes, instanceOf } from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import {
@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import queryString from 'query-string';
+import { withCookies, Cookies } from 'react-cookie';
 import NodeListDrawer from '../note-list-drawer/noteListDrawer';
 import { styles } from '../../material-element-style/style';
 import WarningDialog from '../popup/warningDialog';
@@ -76,7 +77,7 @@ class DisplayNote extends React.Component {
 
   onCloseDialog() {
     const { history } = this.props;
-    const query = { id: '0' };
+    const query = { id: 0 };
     const searchString = queryString.stringify(query);
     history.push({
       search: searchString,
@@ -122,12 +123,13 @@ class DisplayNote extends React.Component {
     const { history, location } = this.props;
     let value = queryString.parse(location.search);
     let index;
-    if (noteId === undefined) {
+    /* if note id is passed by querystring id */
+    if (noteId === undefined && value.id !== undefined) {
       value = queryString.parse(location.search);
       const id = parseInt(value.id, 10);
       index = noteList.findIndex(note => note.id === id);
     }
-    else {
+    else if (noteId !== undefined) {
       index = noteList.findIndex(note => note.id === noteId);
       const query = { id: noteId };
       const searchString = queryString.stringify(query);
@@ -140,7 +142,7 @@ class DisplayNote extends React.Component {
         noteTitle: noteList[index].notetitle, isNoteSaved: true, noteDiscription: noteList[index].notediscription, isAddNote: true, latestNoteAdded: noteList[index].id, welcomeLines: false,
       });
     }
-    else if (value !== null && noteId !== undefined) {
+    else if (index === -1) {
       this.setState({
         openDialog: true,
       });
@@ -172,6 +174,8 @@ class DisplayNote extends React.Component {
       }, () => {
         localStorage.setItem('noteListArray', JSON.stringify(noteList)); // store notelist array to local storage
       });
+      const { cookies } = this.props;
+      cookies.set('note', noteId, { path: '/' });
       this.showNote(noteId);
     }
   }
@@ -247,6 +251,7 @@ class DisplayNote extends React.Component {
                 }}
                 onChange={this.handleNoteDetailChange}
                 required
+                onKeyUp={this.saveNote}
               />
               <Divider variant="middle" />
               <TextField
@@ -266,7 +271,7 @@ class DisplayNote extends React.Component {
                 multiline
                 onChange={this.handleNoteDetailChange}
                 rows="10"
-                onBlur={this.saveNote}
+                onKeyUp={this.saveNote}
               />
             </React.Fragment>
           )}
@@ -286,6 +291,7 @@ DisplayNote.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   history: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object, PropTypes.array]),
   location: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object, PropTypes.array]),
+  cookies: instanceOf(Cookies).isRequired,
 };
 
 DisplayNote.defaultProps = {
@@ -293,4 +299,4 @@ DisplayNote.defaultProps = {
   location: [],
 };
 
-export default withStyles(styles, { withTheme: true })(DisplayNote);
+export default withCookies(withStyles(styles, { withTheme: true })(DisplayNote));

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 // import './App.css';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DisplayNote from './components/left-side-bar/displayNote';
+import PageNoteFound from './components/page-not-found/pageNotFound';
 
 const styles = () => ({
   root: {
@@ -32,7 +33,10 @@ class App extends Component {
     return (
       <div className={classes.root}>
         <Router>
-          <Route path="/" component={DisplayNote} />
+          <Switch>
+            <Route path="/" component={DisplayNote} exact />
+            <Route component={PageNoteFound} />
+          </Switch>
         </Router>
       </div>
     );

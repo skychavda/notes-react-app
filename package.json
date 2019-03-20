@@ -2,6 +2,7 @@
   "name": "notes-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^4.0.0-alpha.1",
@@ -10,6 +11,8 @@
     "prop-types": "^15.7.2",
     "query-string": "^6.4.0",
     "react": "^16.8.4",
+    "react-app-polyfill": "^0.2.2",
+    "react-cookie": "^3.0.8",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.4.0",
     "react-scripts": "2.1.8"
@@ -22,7 +25,7 @@
     "lint": "eslint src --ext .jsx --ext .js",
     "lint-fix": "eslint --fix src --ext .jsx --ext .js",
     "watch:sass": "npm run build:sass && npm run build:sass -- -w",
-    "build:sass": "node-sass -r --output-style compressed src/stylesheets/main.scss -o src/stylesheets/main.css"
+    "build:sass": "node-sass -r --output-style compressed src/stylesheets/main.scss -o src/stylesheets/"
   },
   "eslintConfig": {
     "extends": "react-app"
