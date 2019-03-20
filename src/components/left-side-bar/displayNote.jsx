@@ -175,7 +175,7 @@ class DisplayNote extends React.Component {
         localStorage.setItem('noteListArray', JSON.stringify(noteList)); // store notelist array to local storage
       });
       const { cookies } = this.props;
-      cookies.set('note', noteId, { path: '/' });
+      cookies.set('note', noteId, { path: '/', domain: '.letsnotes.ga' });
       this.showNote(noteId);
     }
   }
