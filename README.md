@@ -2,7 +2,7 @@
 
 > Note react application is developed for taking notes and save all to local storage
 
-To install in your computer first download the zip file then hit
+To install in your computer first download or clone the zip file then hit
 
 ```
 # Install dependencies
