@@ -13,4 +13,4 @@ npm start
 ```
 ## Demo
 
-(Notes)[./notes.gif]
+![demo-gif](./notes.gif)
