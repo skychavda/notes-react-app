@@ -11,7 +11,8 @@ npm install
 # Serve on localhost:3000
 npm start
 ```
-(Preview notes)[http://letsnotes.ga/]
+
+[Preview note demo](http://letsnotes.ga/)
 
 ## Demo
 
