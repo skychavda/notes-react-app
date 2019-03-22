@@ -17,3 +17,11 @@ npm start
 ## Demo
 
 ![demo-gif](./notes.gif)
+
+## Some advance stuff
+
+> In order to enhance this application I prefer to work with cookie and get the latest note id via cookie in subdomain 
+
+### Check out demo at
+
+https://github.com/skychavda/cookie-from-note
