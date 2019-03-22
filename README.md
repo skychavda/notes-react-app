@@ -4,8 +4,10 @@
 
 To install in your computer first download the zip file then hit
 
-`#install all dependencies
-npm intall
+```
+# Install dependencies
+npm install
 
-#start local server
-npm start`
+# Serve on localhost:3000
+npm start
+```
